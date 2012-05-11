@@ -244,12 +244,11 @@ body{
   font-size: 80px;
   color: #344d88;
   font-weight: bold;
+  text-align:center;
 }
 
 #avatar p{
-  position: absolute;
-  top: 10%;
-  left: 35%;
+padding-top:100px;
 }
 
 h1{

@@ -37,15 +37,13 @@
 
   </header>
   <div id="main"role="main">
-    <h1>To Facebook, you are currently worth:</h1>
+    <h1>Right now, each Facebook user is worth:</h1>
 
    
 
 
     <div id="avatar"><p>$ <span id="worth">0</span></p></div>
-
-        <h2><span id="shares">0</span> shares</h2>
-        <h2>Current Stock Price $ <span id="current_price">0</span></h2>
+    <h2>Current Stock Price $ <span id="current_price">0</span></h2>
 
   </div>
   <footer>
@@ -88,10 +86,8 @@
     if (worth!=new_worth){
       worth=ease(worth,new_worth);
       if (Math.abs(new_worth-worth)==0.01) worth=new_worth;
-      shares=Math.round(worth/current_price*100)/100;
       $("#current_price").text(current_price);
       $("#worth").text(worth);
-      $("#shares").text(shares);   
     }
     else{
       clearInterval(timerID);
