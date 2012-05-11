@@ -225,6 +225,16 @@ body{
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
 }
 
+#main{
+  width: 700px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  margin-top: -250px;
+  left: 50%;
+  margin-left: -350px;
+  text-align: center;
+}
 
 
 
