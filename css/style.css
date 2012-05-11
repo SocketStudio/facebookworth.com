@@ -226,14 +226,22 @@ body{
 }
 
 #main{
-  width: 700px;
+  width: 1000px;
   height: 500px;
   position: absolute;
   top: 50%;
   margin-top: -250px;
   left: 50%;
-  margin-left: -350px;
+  margin-left: -500px;
   text-align: center;
+}
+
+h1{
+  font-size: 40px;
+}
+
+h2{
+  font-size: 40px;
 }
 
 
