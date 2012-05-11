@@ -38,10 +38,15 @@
   </header>
   <div id="main"role="main">
     <h1>To Facebook, you are currently worth:</h1>
-    <img id="avatar" src="img/avatar.jpg">
 
-    <h2>$ <span id="worth">0</span> or <span id="shares">0</span> shares</h2>
+   
+
+
+    <div id="avatar"><p>$ <span id="worth">0</span></p></div>
+
+        <h2><span id="shares">0</span> shares</h2>
         <h2>Current Stock Price $ <span id="current_price">0</span></h2>
+
   </div>
   <footer>
   </footer>
@@ -57,12 +62,12 @@
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
    <script>
-  var worth=0, current_price=0, shares=102420000, users=150000000;
+  var worth=0, new_worth=0, current_price=0, shares=102420000, users=150000000, timerID;
+   
    $(document).ready(function()
     {
       getPrice();
-      setInterval(getPrice,3000);
-      setInterval(checkNumber,100);
+      setInterval(getPrice,5000);
     });
 
    function getPrice(){
@@ -72,31 +77,42 @@
         dataType: "jsonp",
         success: function(data){
           current_price=data[0].l;
+          new_worth=calculateWorth(current_price);
+          timerID=setInterval(updateWorth,50);
         }
       });
    }
 
-   function checkNumber(){
-    var temp, new_worth,change_worth;
-    new_worth=calculateWorth(current_price);
-
+   function updateWorth(){
+    var shares;
     if (worth!=new_worth){
-      change_worth=(new_worth-worth)/2
-      worth+=change_worth;
-      worth=calculateWorth(worth);
+      worth=ease(worth,new_worth);
+      if (Math.abs(new_worth-worth)==0.01) worth=new_worth;
+      shares=Math.round(worth/current_price*100)/100;
       $("#current_price").text(current_price);
       $("#worth").text(worth);
-      $("#shares").text(Math.round(worth/current_price*100)/100);
+      $("#shares").text(shares);   
+    }
+    else{
+      clearInterval(timerID);
+    }
+  }
+
+    function ease(start,end){
+      var change;
+      change=(end-start)/2;
+      change=Math.round(change*100)/100;
+      start+=change;
+      return Math.round(start*100)/100;
     }
 
     function calculateWorth(price){
       var market_cap,price_per_user;
       market_cap=price*shares;
       price_per_user=market_cap/users;
-      return (Math.round(price_per_user*100)/100);
+      return Math.round(price_per_user*100)/100;
     }
 
-  }
 //150M
 //102.42M
    </script>
