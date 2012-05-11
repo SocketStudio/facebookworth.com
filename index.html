@@ -39,7 +39,9 @@
   <div id="main"role="main">
     <h1>To Facebook, you are currently worth:</h1>
     <img id="avatar" src="img/avatar.jpg">
-    <h2>$ <span id="worth">0</span></h2>
+
+    <h2>$ <span id="worth">0</span> or <span id="shares">0</span> shares</h2>
+        <h2>Current Stock Price $ <span id="current_price">0</span></h2>
   </div>
   <footer>
   </footer>
@@ -55,7 +57,7 @@
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
    <script>
-  var current=0, new_price=0;
+  var worth=0, current_price=0, shares=102420000, users=150000000;
    $(document).ready(function()
     {
       getPrice();
@@ -66,24 +68,37 @@
    function getPrice(){
     $.ajax({
         type: "GET",
-        url: "http://finance.google.com/finance/info?client=ig&q=NASDAQ:GOOG",
+        url: "http://finance.google.com/finance/info?client=ig&q=NYSE:LNKD",
         dataType: "jsonp",
         success: function(data){
-          new_price=data[0].l;
-         //$("body").append(data[0].l)
+          current_price=data[0].l;
         }
       });
    }
 
    function checkNumber(){
-    var temp;
-    if (current!=new_price){
-      temp=current+(new_price-current)/2;
-      current=Math.round(temp*100)/100;
-      $("#worth").text(current);
-    }
-  }
+    var temp, new_worth,change_worth;
+    new_worth=calculateWorth(current_price);
 
+    if (worth!=new_worth){
+      change_worth=(new_worth-worth)/2
+      worth+=change_worth;
+      worth=calculateWorth(worth);
+      $("#current_price").text(current_price);
+      $("#worth").text(worth);
+      $("#shares").text(Math.round(worth/current_price*100)/100);
+    }
+
+    function calculateWorth(price){
+      var market_cap,price_per_user;
+      market_cap=price*shares;
+      price_per_user=market_cap/users;
+      return (Math.round(price_per_user*100)/100);
+    }
+
+  }
+//150M
+//102.42M
    </script>
   <!-- end scripts -->
 
