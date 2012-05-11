@@ -38,8 +38,7 @@
   </header>
   <div id="main"role="main">
     <h1>To Facebook, you are currently worth:</h1>
-    <img id="avatar" src="img/avatar.jpg">
-    <h2>$ <span id="worth">0</span></h2>
+    <div id="avatar"><span id="worth">0</span></div>
   </div>
   <footer>
   </footer>
@@ -80,7 +79,7 @@
     if (current!=new_price){
       temp=current+(new_price-current)/2;
       current=Math.round(temp*100)/100;
-      $("#worth").text(current);
+      $("#worth").text("$ " + current);
     }
   }
 

@@ -236,6 +236,23 @@ body{
   text-align: center;
 }
 
+#avatar{
+ background: #FFF url('../img/avatar.jpg') no-repeat center center ;
+ width: 470px;
+ height: 294px;
+ margin: 0 auto;
+  font-size: 80px;
+  color: #344d88;
+  font-weight: bold;
+}
+
+#worth{
+
+  position: absolute;
+  top: 40%;
+  left: 35%;
+}
+
 h1{
   font-size: 40px;
 }
