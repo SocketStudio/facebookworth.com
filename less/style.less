@@ -11,17 +11,40 @@ body {
 /* ===== Primary Styles ========================================================
    Author:
    ========================================================================== */
-
+@font-face {
+    font-family: 'WebSymbolsRegular';
+    src: url('../fonts/WebSymbols-Regular-webfont.eot');
+    src: url('../fonts/WebSymbols-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/WebSymbols-Regular-webfont.woff') format('woff'),
+         url('../fonts/WebSymbols-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/WebSymbols-Regular-webfont.svg#WebSymbolsRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .stat{
 	height:@gridColumnWidth * 4;
-	background-color:#55F;
+	background-color:#c4ccdf;
+	position: relative;
+	color:white;
+	h2{
+		position:absolute;
+	}
 }
 
 .stats{
 	margin-top:@gridGutterWidth;
 }
 
+.user_icon::before{
+	font-family: 'WebSymbolsRegular';
+	content:"U";
+	line-height:0;
+	font-style:normal;
+	position: relative;
+	font-size:0.8em;
+	top:-4px;
+}
 
 
 
