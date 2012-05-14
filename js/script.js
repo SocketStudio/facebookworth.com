@@ -2,8 +2,7 @@
 
 */
 
-var current_price=0, shares=2138085037, users=901000000,
-    timerID, instagram_price=1000000000, jet_price=65000000, zuck_salary=1712362,harvard_tuition=36305;
+var current_price=0, shares=2138085037, users = 901000000, timerID, instagram_price =1000000000, jet_price = 65000000, zuck_salary = 1712362, harvard_tuition = 36305, winklevoss =14000000;
    
 $(function()
 {
@@ -23,25 +22,51 @@ $(function()
 
   $(document).on("price/stock",function(e,d){
     var user_price=calculateUserPrice(d.price);
-    setTimeout(function(){$(document).trigger("price/user",[{price:user_price}])},1000);
-    $("#user").text(user_price.toFixed(2));
+    changeValue('user',user_price,'dollars');
+    setTimeout(function(){
+      $(document).trigger("price/user",[{price:user_price}])
+    },1000);
   });
 
   $(document).on("price/user",function(e,d){
-   $("#instagram").text(addSpaces((instagram_price/d.price).toFixed(0)));
+    changeValue('instagram',instagram_price/d.price,'users');
   });
 
   $(document).on("price/user",function(e,d){
-   $("#jet").text(addSpaces((jet_price/d.price).toFixed(0)));
+    changeValue('jet',jet_price/d.price,'users');
   });
   $(document).on("price/user",function(e,d){
-   $("#zuck").text(addSpaces((zuck_salary/d.price).toFixed(0)));
+    changeValue('zuck',zuck_salary/d.price,'users');
+  });
+
+  $(document).on("price/user",function(e,d){
+    changeValue('100_shares',(current_price*100)/d.price,'users')
+  });
+
+  $(document).on("price/user",function(e,d){
+    changeValue('winklevoss',winklevoss/d.price,'users');
+  });
+
+  $(document).on("price/user",function(e,d){
+    changeValue('harvard',(harvard_tuition*2)/d.price,'users')
   });
 
   getPrice();
   setInterval(getPrice,5000);
 
 });
+
+function changeValue(sel,num,metric){
+  var value;
+  if(metric=="users"){
+    value=addSpaces(num.toFixed(0));
+  }
+  if(metric=="dollars"){
+    value=num.toFixed(2);
+  }
+  console.log(value);
+  $("#"+sel).find("#value").text(value);
+}
 
 function changePrice(start,end,steps,intervals,powr) { 
   var actStep = 0;
