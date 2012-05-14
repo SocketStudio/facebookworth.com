@@ -22,18 +22,27 @@ body {
     font-style: normal;
 }
 
-.stat{
-	height:@gridColumnWidth * 4;
-	background-color:#c4ccdf;
-	position: relative;
-	color:white;
-	h2{
-		position:absolute;
-	}
-}
 
 .stats{
 	margin-top:@gridGutterWidth;
+	.span4, .span12{
+		background-color:#c4ccdf;
+	}
+	.span4{
+		height:225px;
+		position: relative;
+		color:white;
+		background:#c4ccdf url(../img/zuck.gif) 0 0 no-repeat;
+		background-size:100%;
+		h2{
+			position:absolute;
+			left:10px;
+			font-size:3em;
+			#value{
+				color:#375595;
+			}
+		}
+	}
 }
 
 .user_icon::before{
@@ -44,9 +53,55 @@ body {
 	position: relative;
 	font-size:0.8em;
 	top:-4px;
+	color:#375595;
+}
+@media (max-width: 480px) {
+	.stats{
+		margin-top:0;
+		.span12{
+			width:320px;
+			margin:0 auto;
+		}
+		.span4{
+			height:240px;
+			width:320px;
+			margin:0 auto;
+		}
+	}
 }
 
+@media (max-width: 767px) {
+	.stats{
+		margin-top:0;
+		.span12{
+			width:440px;
+			margin:0 auto;
+		}
+		.span4{
+			height:330px;
+			width:440px;
+			margin:0 auto;
+		}
+	}
 
+}
+@media (min-width: 768px) and (max-width: 979px) {
+	.stats{
+		margin-top:10px;
+		.span4{
+			height:171px;
+		}
+	}
+}
+
+@media (min-width: 1200px) {
+	.stats{
+		margin-top:15px;
+		.span4{
+			height:277px;
+		}
+	}
+}
 
 
 
