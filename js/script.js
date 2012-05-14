@@ -2,8 +2,8 @@
 
 */
 
-var current_price=0, shares=102420000, users=150000000,
-    timerID, instagram_price=1000000000, jet_price=65000000, zuck_salary=1712362;
+var current_price=0, shares=2138085037, users=901000000,
+    timerID, instagram_price=1000000000, jet_price=65000000, zuck_salary=1712362,harvard_tuition=36305;
    
 $(function()
 {
@@ -44,16 +44,16 @@ $(function()
 });
 
 function changePrice(start,end,steps,intervals,powr) { 
-var actStep = 0;
-if(window.timerID) {window.clearInterval(window.timerID);}
-window.timerID = window.setInterval(
-  function() { 
-    current_price = easeInOut(start,end,steps,actStep,powr);
-    $(document).trigger("price/stock",[{price:current_price}]);
-    actStep++;
-    if (actStep > steps) {window.clearInterval(window.timerID); window.timerID=null;}
-  } 
-  ,intervals)
+  var actStep = 0;
+  if(window.timerID) {window.clearInterval(window.timerID);}
+  window.timerID = window.setInterval(
+    function() { 
+      current_price = easeInOut(start,end,steps,actStep,powr);
+      $(document).trigger("price/stock",[{price:current_price}]);
+      actStep++;
+      if (actStep > steps) {window.clearInterval(window.timerID); window.timerID=null;}
+    } 
+    ,intervals)
 }
 
 function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) { 
@@ -67,7 +67,7 @@ function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) {
 function getPrice(){
 $.ajax({
     type: "GET",
-    url: "http://finance.google.com/finance/info?client=ig&q=NYSE:LNKD",
+    url: "http://finance.google.com/finance/info?client=ig&q=NASDAQ:MSFT",
     dataType: "jsonp",
     success: function(data){
       $(document).trigger("priceChecked",[{price:data[0].l}])
