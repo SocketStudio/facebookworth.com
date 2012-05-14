@@ -1,8 +1,9 @@
 @import "bootstrap/bootstrap.less";
-
+@FBblue: #375595;
 body {
   padding-top: 60px;
   padding-bottom: 40px;
+  background:@FBblue;
 }
 
 @import "bootstrap/responsive.less";
@@ -11,6 +12,8 @@ body {
 /* ===== Primary Styles ========================================================
    Author:
    ========================================================================== */
+
+
 @font-face {
     font-family: 'WebSymbolsRegular';
     src: url('../fonts/WebSymbols-Regular-webfont.eot');
@@ -32,16 +35,29 @@ body {
 		height:225px;
 		position: relative;
 		color:white;
-		background:#c4ccdf url(../img/zuck.gif) 0 0 no-repeat;
 		background-size:100%;
 		h2{
 			position:absolute;
 			left:10px;
-			font-size:3em;
+			font-size:40px;
 			#value{
-				color:#375595;
+				color:@FBblue;
 			}
 		}
+		p{
+			position:absolute;
+			bottom:0;
+			left:5%;
+			color:@FBblue;
+		}
+	}
+}
+
+#zuck{
+	background:#c4ccdf url(../img/zuck.gif) 0 0 no-repeat;
+	h2{
+		left:50%;
+		top:50%;
 	}
 }
 
@@ -53,8 +69,9 @@ body {
 	position: relative;
 	font-size:0.8em;
 	top:-4px;
-	color:#375595;
+	color:#fff;
 }
+
 @media (max-width: 480px) {
 	.stats{
 		margin-top:0;
