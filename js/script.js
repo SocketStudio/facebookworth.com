@@ -2,57 +2,97 @@
 
 */
 
-var worth=0, new_worth=0, current_price=0, shares=102420000, users=150000000, timerID;
+var current_price=0, shares=102420000, users=150000000,
+    timerID, instagram_price=1000000000, jet_price=65000000, zuck_salary=1712362;
    
-   $(document).ready(function()
-    {
-      getPrice();
-      setInterval(getPrice,5000);
-    });
-
-   function getPrice(){
-    $.ajax({
-        type: "GET",
-        url: "http://finance.google.com/finance/info?client=ig&q=NYSE:LNKD",
-        dataType: "jsonp",
-        success: function(data){
-          current_price=data[0].l;
-          new_worth=calculateWorth(current_price);
-          timerID=setInterval(updateWorth,50);
-        }
-      });
-   }
-
-   function updateWorth(){
-    var shares;
-    if (worth!=new_worth){
-      worth=ease(worth,new_worth);
-      if (Math.abs(new_worth-worth)==0.01) worth=new_worth;
-      $("#current_price").text(current_price);
-      $("#worth").text(worth);
+$(function()
+{
+  $(document).on("priceChecked",function(e, d){
+    var new_price=d.price;
+    if (current_price!=new_price){
+      changePrice(current_price,new_price,20,50,2)
     }
-    else{
-      clearInterval(timerID);
+
+    // new_worth=calculateWorth(current_price);
+    // timerID=setInterval(updateWorth,50);
+  });
+
+  $(document).on("price/stock",function(e,d){
+    (function(){$("#stock").text(d.price.toFixed(2))})();
+  });
+
+  $(document).on("price/stock",function(e,d){
+    var user_price=calculateUserPrice(d.price);
+    setTimeout(function(){$(document).trigger("price/user",[{price:user_price}])},1000);
+    $("#user").text(user_price.toFixed(2));
+  });
+
+  $(document).on("price/user",function(e,d){
+   $("#instagram").text(addSpaces((instagram_price/d.price).toFixed(0)));
+  });
+
+  $(document).on("price/user",function(e,d){
+   $("#jet").text(addSpaces((jet_price/d.price).toFixed(0)));
+  });
+  $(document).on("price/user",function(e,d){
+   $("#zuck").text(addSpaces((zuck_salary/d.price).toFixed(0)));
+  });
+
+  getPrice();
+  setInterval(getPrice,5000);
+
+});
+
+function changePrice(start,end,steps,intervals,powr) { 
+var actStep = 0;
+if(window.timerID) {window.clearInterval(window.timerID);}
+window.timerID = window.setInterval(
+  function() { 
+    current_price = easeInOut(start,end,steps,actStep,powr);
+    $(document).trigger("price/stock",[{price:current_price}]);
+    actStep++;
+    if (actStep > steps) {window.clearInterval(window.timerID); window.timerID=null;}
+  } 
+  ,intervals)
+}
+
+function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) { 
+  //Generic Animation Step Value Generator By www.hesido.com 
+  var delta = maxValue - minValue; 
+  var step = minValue+(Math.pow(((1 / totalSteps) * actualStep), powr) * delta); 
+  return step;
+} 
+
+
+function getPrice(){
+$.ajax({
+    type: "GET",
+    url: "http://finance.google.com/finance/info?client=ig&q=NYSE:LNKD",
+    dataType: "jsonp",
+    success: function(data){
+      $(document).trigger("priceChecked",[{price:data[0].l}])
     }
+  });
+}
+
+function calculateUserPrice(price){
+  var market_cap,price_per_user;
+  market_cap=price*shares;
+  price_per_user=market_cap/users;
+  return price_per_user;
+}
+
+function addSpaces(nStr){
+  nStr += '';
+  x = nStr.split('.');
+  x1 = x[0];
+  x2 = x.length > 1 ? '.' + x[1] : '';
+  var rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1)) {
+    x1 = x1.replace(rgx, '$1' + ' ' + '$2');
   }
-
-    function ease(start,end){
-      var change;
-      change=(end-start)/2;
-      change=Math.round(change*100)/100;
-      start+=change;
-      return Math.round(start*100)/100;
-    }
-
-    function calculateWorth(price){
-      var market_cap,price_per_user;
-      market_cap=price*shares;
-      price_per_user=market_cap/users;
-      return Math.round(price_per_user*100)/100;
-    }
-
-//150M linked in users
-//102.42M linked in shares
+  return x1 + x2;
+}
 
 
 
