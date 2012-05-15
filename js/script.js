@@ -58,8 +58,10 @@ $(function()
   });
   
   $(document).trigger("price/stock",[{price:current_price}]);
-  //getPrice();
-  //setInterval(getPrice,5000);
+  getPrice();
+  setInterval(getPrice,5000);
+
+  //$(".span4").hover(function(){$(this).find("#value").css("opacity",1)},function(){$(this).find("#value").css("opacity",0)});
 
 });
 
