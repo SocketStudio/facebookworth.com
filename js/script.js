@@ -8,6 +8,7 @@ $(function()
 {
   $(document).on("priceChecked",function(e, d){
     var new_price=d.price;
+    $("#time").text(d.time);
     if (current_price!=new_price){
       changePrice(current_price,new_price,20,50,2)
     }
@@ -17,11 +18,12 @@ $(function()
   });
 
   $(document).on("price/stock",function(e,d){
-    (function(){$("#stock").text(d.price.toFixed(2))})();
+    changeValue('stock',d.price,'dollars');
   });
 
   $(document).on("price/stock",function(e,d){
     var user_price=calculateUserPrice(d.price);
+
     changeValue('user',user_price,'dollars');
     setTimeout(function(){
       $(document).trigger("price/user",[{price:user_price}])
@@ -65,8 +67,7 @@ function changeValue(sel,num,metric){
   if(metric=="dollars"){
     value=num.toFixed(2);
   }
-  console.log(value);
-  $("#"+sel).find("#value").text(value);
+  $("#"+sel).find("#value:eq(0)").text(value);
 }
 
 function changePrice(start,end,steps,intervals,powr) { 
@@ -96,7 +97,7 @@ $.ajax({
     url: "http://finance.google.com/finance/info?client=ig&q=NASDAQ:MSFT",
     dataType: "jsonp",
     success: function(data){
-      $(document).trigger("priceChecked",[{price:data[0].l}])
+      $(document).trigger("priceChecked",[{price:data[0].l,time:data[0].ltt}])
     }
   });
 }
