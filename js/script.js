@@ -7,10 +7,14 @@ var current_price=35.00, shares=2138085037, users = 901000000, timerID, instagra
 $(function()
 {
   $(document).on("priceChecked",function(e, d){
-    var new_price=d.price;
-    $("#time").text(d.time);
-    if (current_price!=new_price){
-      changePrice(current_price,new_price,20,50,2)
+    var seconds=new Date().getSeconds();
+    seconds=Math.floor(parseInt(seconds)/5)*5;
+    seconds=(seconds<10) ? "0"+seconds.toString() : seconds;
+    var time=d.time.replace(/(AM|PM)/,":"+seconds);
+
+    $("#time").text(time);
+    if (current_price!=d.price){
+      changePrice(current_price,d.price,20,50,2)
     }
 
     // new_worth=calculateWorth(current_price);
