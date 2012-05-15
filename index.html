@@ -41,7 +41,9 @@
           <div class="row stats">
             <div class="span12 stat">
               <div class="row">
-                <div class="span4" id="901M">901M</div>
+                <div class="span4" id="active_users">
+                  <h1>Facebook has <br><span id="number_of_active_users">901 million </span><br>active users</h1>
+                </div>
                 <div class="span4" id="FBuser">FBuser Image</div>
                 <div class="span4" id="user">
                   <h3>As of <span id="time">9:00 AM EDT</span><br/>
@@ -53,11 +55,19 @@
                   <h3 id="stock">
                     Current Stock Price $
                     <span id="value">0</span>
+                    <div id="tweet_button"><a href="https://twitter.com/share" class="twitter-share-button" data-via="twitterapi" data-lang="en">Tweet</a></div>
+
+                    <div class="fb-like" data-href="http://www.google.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
                   </h3>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="row stats">
+            <div id="how_many" class="span12 stat"><h3>How many Facebook users would it take to...</h3></div>
+          </div>
+
           <div class="row stats">
             <div class="span4 stat" id="harvard">
               <p>Harvard</p>
@@ -89,7 +99,7 @@
                 <i class="user_icon"></i>
               </h2>
             </div>
-            <div class="span4 stat" id="100_shares">
+            <div class="span4 stat" id="shares">
 
               <p>100 shares</p>
               <h2>
@@ -127,6 +137,17 @@
   g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
   s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 </body>
     </html>

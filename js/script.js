@@ -14,7 +14,7 @@ $(function()
 
     $("#time").text(time);
     if (current_price!=d.price){
-      changePrice(current_price,d.price,20,50,2)
+      changePrice(current_price,d.price,20,100,2)
     }
 
     // new_worth=calculateWorth(current_price);
@@ -46,7 +46,7 @@ $(function()
   });
 
   $(document).on("price/user",function(e,d){
-    changeValue('100_shares',(current_price*100)/d.price,'users')
+    changeValue('shares',(current_price*100)/d.price,'users')
   });
 
   $(document).on("price/user",function(e,d){
