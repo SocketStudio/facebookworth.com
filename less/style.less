@@ -1,0 +1,129 @@
+@import "bootstrap/bootstrap.less";
+@FBblue: #375595;
+@FBlightblue: #c4ccdf;
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+  background:@FBblue;
+}
+
+@import "bootstrap/responsive.less";
+
+
+/* ===== Primary Styles ========================================================
+   Author:
+   ========================================================================== */
+
+
+@font-face {
+    font-family: 'WebSymbolsRegular';
+    src: url('../fonts/WebSymbols-Regular-webfont.eot');
+    src: url('../fonts/WebSymbols-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/WebSymbols-Regular-webfont.woff') format('woff'),
+         url('../fonts/WebSymbols-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/WebSymbols-Regular-webfont.svg#WebSymbolsRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.stats{
+	margin-top:@gridGutterWidth;
+	.span4, .span12{
+		background-color:@FBlightblue;
+	}
+	.span4{
+		height:225px;
+		position: relative;
+		color:white;
+		background-size:100%;
+		h2{
+			position:absolute;
+			left:10px;
+			font-size:40px;
+			#value{
+				color:@FBblue;
+			}
+		}
+		p{
+			position:absolute;
+			bottom:0;
+			left:5%;
+			color:@FBblue;
+		}
+	}
+}
+
+#zuck{
+	background:@FBlightblue url(../img/zuck.gif) 0 0 no-repeat;
+	h2{
+		left:50%;
+		top:50%;
+	}
+}
+
+.user_icon::before{
+	font-family: 'WebSymbolsRegular';
+	content:"U";
+	line-height:0;
+	font-style:normal;
+	position: relative;
+	font-size:0.8em;
+	top:-4px;
+	color:#fff;
+}
+
+@media (max-width: 480px) {
+	.stats{
+		margin-top:0;
+		.span12{
+			width:320px;
+			margin:0 auto;
+		}
+		.span4{
+			height:240px;
+			width:320px;
+			margin:0 auto;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.stats{
+		margin-top:0;
+		.span12{
+			width:440px;
+			margin:0 auto;
+		}
+		.span4{
+			height:330px;
+			width:440px;
+			margin:0 auto;
+		}
+	}
+
+}
+@media (min-width: 768px) and (max-width: 979px) {
+	.stats{
+		margin-top:10px;
+		.span4{
+			height:171px;
+		}
+	}
+}
+
+@media (min-width: 1200px) {
+	.stats{
+		margin-top:15px;
+		.span4{
+			height:277px;
+		}
+	}
+}
+
+
+
+
+
+
+

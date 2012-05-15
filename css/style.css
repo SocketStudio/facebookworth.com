@@ -244,13 +244,11 @@ body{
   font-size: 80px;
   color: #344d88;
   font-weight: bold;
+  text-align:center;
 }
 
-#worth{
-
-  position: absolute;
-  top: 40%;
-  left: 35%;
+#avatar p{
+padding-top:100px;
 }
 
 h1{
