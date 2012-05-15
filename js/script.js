@@ -2,7 +2,7 @@
 
 */
 
-var current_price=35.00, shares=2138085037, users = 901000000, timerID, instagram_price =1000000000, jet_price = 65000000, zuck_salary = 1712362, harvard_tuition = 36305, winklevoss =14000000;
+var current_price=38.00, shares=2138085037, users = 506000000, timerID, instagram_price =1000000000, jet_price = 65000000, zuck_salary = 1712362, harvard_tuition = 36305, winklevoss =14000000;
    
 $(function()
 {
@@ -58,8 +58,8 @@ $(function()
   });
   
   $(document).trigger("price/stock",[{price:current_price}]);
-  getPrice();
-  setInterval(getPrice,5000);
+  //getPrice();
+  //setInterval(getPrice,5000);
 
 });
 
