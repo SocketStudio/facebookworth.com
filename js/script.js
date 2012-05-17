@@ -8,7 +8,6 @@ $(function()
 {
   $(document).on("priceChecked",function(e, d){
     var seconds=new Date().getSeconds();
-    current_price=parseInt($("#stock").find("#value").text());
     seconds=Math.floor(parseInt(seconds)/5)*5;
     seconds=(seconds<10) ? "0"+seconds.toString() : seconds;
     var time=(d.time.indexOf("4:00") == -1) ? d.time.replace(/(AM|PM)/,":"+seconds) : d.time;
@@ -16,7 +15,8 @@ $(function()
     $("#time").text(time);
     
     if (current_price!=d.price){
-      this.stock_timer=rampValue(current_price,d.price,20,100,2,this.stock_timer,"price/stock")
+      this.stock_timer=rampValue(current_price,d.price,this.stock_timer,"price/stock")
+      current_price=d.price;
     }
 
     // new_worth=calculateWorth(current_price);
@@ -24,12 +24,8 @@ $(function()
   });
 
   $(document).on("price/stock",function(e,d){
-    changeValue('stock',d,'dollars');
-  });
-
-  $(document).on("price/stock",function(e,d){
     var user_price=calculateUserPrice(d);
-
+    changeValue('stock',d,'dollars');
     changeValue('user',user_price,'dollars');
     setTimeout(function(){
       $(document).trigger("price/user",[{price:user_price}])
@@ -37,28 +33,32 @@ $(function()
   });
 
   $(document).on("price/user",function(e,d){
-    changeValue('instagram',instagram_price/d.price,'users');
-  });
-
-  $(document).on("price/user",function(e,d){
+    /*changeValue('instagram',instagram_price/d.price,'users');
     changeValue('jet',jet_price/d.price,'users');
-  });
-  $(document).on("price/user",function(e,d){
     changeValue('zuck',zuck_salary/d.price,'users');
-  });
-
-  $(document).on("price/user",function(e,d){
     changeValue('shares',(current_price*100)/d.price,'users')
-  });
-
-  $(document).on("price/user",function(e,d){
     changeValue('winklevoss',winklevoss/d.price,'users');
-  });
+    changeValue('harvard',(harvard_tuition*2)/d.price,'users')*/
+    this.harvard_timer=rampValue(getCurrentValue("harvard"),harvard_tuition*2/d.price,this.harvard_timer,"users/harvard");
+    this.instagram_timer=rampValue(getCurrentValue("instagram"),instagram_price*2/d.price,this.instagram_timer,"users/instagram");
+    this.jet_timer=rampValue(getCurrentValue("jet"),jet_price*2/d.price,this.jet_timer,"users/jet");
+    //this.harvard_timer=rampValue(parseInt($("#harvard").find("#value").text()),harvard_tuition*2/d.price,this.harvard_timer,"users/harvard");
+  
 
-  $(document).on("price/user",function(e,d){
-    changeValue('harvard',(harvard_tuition*2)/d.price,'users')
   });
   
+  $(document).on("users/harvard",function(e,d){
+    changeValue('harvard',d,'users')
+  });
+
+  $(document).on("users/instagram",function(e,d){
+    changeValue('instagram',d,'users')
+  });
+
+  $(document).on("users/jet",function(e,d){
+    changeValue('jet',d,'users')
+  });
+
   $(document).trigger("price/stock",[current_price]);
   getPrice();
   setInterval(getPrice,5000);
@@ -66,6 +66,9 @@ $(function()
   //$(".span4").hover(function(){$(this).find("#value").css("opacity",1)},function(){$(this).find("#value").css("opacity",0)});
 
 });
+function getCurrentValue(sel){
+  return parseInt($("#"+sel).find("#value").text().split(" ").join(""))
+}
 
 function changeValue(sel,num,metric){
   var value;
@@ -78,7 +81,11 @@ function changeValue(sel,num,metric){
   $("#"+sel).find("#value:eq(0)").text(value);
 }
 
-function rampValue(start,end,steps,intervals,powr,timer,event) {
+function rampValue(start,end,timer,event) {
+  console.log(event);
+  console.log(start + " - "+ end);
+  console.log();
+  var steps=20,intervals=100,powr=1.1;
   var actStep = 0;
   if(timer) {window.clearInterval(timer);}
   timer = window.setInterval(
