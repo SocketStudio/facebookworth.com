@@ -28,6 +28,9 @@ $(function()
     var user_price=calculateUserPrice(d);
     changeValue('stock',d,'dollars');
     changeValue('user',user_price,'dollars');
+
+    this.market_cap_timer=rampValue(getCurrentValue("how_many"),shares*current_price,this.market_cap_timer,"price/market_cap");
+
     setTimeout(function(){
       $(document).trigger("price/user",[{price:user_price}])
     },1000);
@@ -50,6 +53,10 @@ $(function()
   
   $(document).on("users/harvard",function(e,d){
     changeValue('harvard',d,'users')
+  });
+
+  $(document).on("price/market_cap",function(e,d){
+    changeValue('how_many',d,'users')
   });
 
   $(document).on("users/instagram",function(e,d){
