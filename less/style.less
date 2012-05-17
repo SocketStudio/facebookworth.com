@@ -29,13 +29,13 @@ body {
 
 .stats{
 	margin-top:@gridGutterWidth;
-	.span4, .span12{
+	.span4, .span12,.span8{
 		background-color:@FBlightblue;
 		border-radius:5px;
 		-moz-border-radius:5px;
 		-webkit-border-radius:5px;
 	}
-	.span4{
+	.span4,.span8{
 		height:225px;
 		position: relative;
 		color:white;
@@ -91,7 +91,7 @@ body {
 	font-size: 60px;
 }
 
-#how_many{
+#market_cap{
 	color: white;
 	height: 80px;
 	text-align: center;
@@ -175,13 +175,93 @@ body {
 
 .user_icon::before{
 	font-family: 'WebSymbolsRegular';
-	content:"U";
+	content:"U ";
 	line-height:0;
 	font-style:normal;
 	position: relative;
-	font-size: 25px;
-	top:-4px;
-	color:#fff;
+	font-size: 15px;
+	top:-3px;
+}
+
+#social_buttons{
+	float:right;
+	margin-top:-57px;
+	width:200px;
+	div{
+		width:100px;
+	}
+	#tweet_button,.fb-like{
+		float:left;
+	}
+
+}
+
+#explanation{
+	float:left;
+	color:@FBlightblue;
+	&:hover{
+		text-decoration:none;
+		color:lighten(#08C,10%);
+	}
+	h4{
+		span{
+			font-family: 'WebSymbolsRegular';
+			font-size:80%;
+			line-height:10px;
+			position:relative;
+			top:-2px;
+		}
+	}
+}
+
+footer{
+
+	margin-top:20px;
+
+	color:@FBlightblue;
+	.line{
+		height:5px;
+		background:@FBlightblue;
+		border-radius:10px;
+	}
+	p{
+		padding-top:10px;
+		float:right;
+		a{
+			color:#fff;
+			&:hover{
+				text-decoration:none;
+			}
+		}
+	}
+}
+
+.modal{
+	.modal-header{
+		h3{
+			color:@FBblue;
+		}
+	}
+	.modal-body{
+		background-color:@FBlightblue;
+		color:#000;
+	}
+	.modal-footer{
+		background:@FBlightblue;
+		padding:0;
+		p{	
+			font-size:90%;
+			padding:10px 7px 0 0;
+			color:white;
+			a{
+				color:@FBblue;
+				&:hover{
+					text-decoration:none;
+				}
+			}
+		}
+		
+	}
 }
 
 @media (max-width: 480px) {
@@ -191,7 +271,7 @@ body {
 			width:320px;
 			margin:0 auto;
 		}
-		.span4{
+		.span4,.span8{
 			height:240px;
 			width:320px;
 			margin:0 auto;
@@ -206,7 +286,7 @@ body {
 			width:440px;
 			margin:0 auto;
 		}
-		.span4{
+		.span4,.span8{
 			height:330px;
 			width:440px;
 			margin:0 auto;
@@ -217,7 +297,7 @@ body {
 @media (min-width: 768px) and (max-width: 979px) {
 	.stats{
 		margin-top:10px;
-		.span4{
+		.span4,.span8{
 			height:171px;
 		}
 	}
@@ -226,15 +306,8 @@ body {
 @media (min-width: 1200px) {
 	.stats{
 		margin-top:15px;
-		.span4{
+		.span4,.span8{
 			height:277px;
 		}
 	}
 }
-
-
-
-
-
-
-

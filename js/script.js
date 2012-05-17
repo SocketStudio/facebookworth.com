@@ -2,7 +2,7 @@
 
 */
 
-var current_price=38.00, shares=2138085037, users = 506000000, timerID, instagram_price =1000000000, jet_price = 65000000, zuck_salary = 1712362, harvard_tuition = 36305, winklevoss =14000000;
+var current_price=38.00, shares=2138085037, users = 506000000, timerID, instagram_price =1000000000, jet_price = 65000000, zuck_salary = 1712362, harvard_tuition = 36305, winklevoss =14000000, friends=250;
    
 $(function()
 {
@@ -10,7 +10,7 @@ $(function()
     var seconds=new Date().getSeconds();
     seconds=Math.floor(parseInt(seconds)/5)*5;
     seconds=(seconds<10) ? "0"+seconds.toString() : seconds;
-    var time=d.time.replace(/(AM|PM)/,":"+seconds);
+    var time=(d.time.indexOf("4:00") == -1) ? d.time.replace(/(AM|PM)/,":"+seconds) : d.time;
 
     $("#time").text(time);
     if (current_price!=d.price){
@@ -26,6 +26,11 @@ $(function()
   });
 
   $(document).on("price/stock",function(e,d){
+    changeValue('market_cap',d.price*shares,"users");
+  });
+
+
+  $(document).on("price/stock",function(e,d){
     var user_price=calculateUserPrice(d.price);
 
     changeValue('user',user_price,'dollars');
@@ -35,11 +40,11 @@ $(function()
   });
 
   $(document).on("price/user",function(e,d){
-    changeValue('instagram',instagram_price/d.price,'users');
+    changeValue('friends_value',friends*d.price,'users');
   });
 
   $(document).on("price/user",function(e,d){
-    changeValue('jet',jet_price/d.price,'users');
+    changeValue('friends',d.price,'dollars');
   });
   $(document).on("price/user",function(e,d){
     changeValue('zuck',zuck_salary/d.price,'users');
@@ -73,7 +78,7 @@ function changeValue(sel,num,metric){
   if(metric=="dollars"){
     value=num.toFixed(2);
   }
-  $("#"+sel).find("#value:eq(0)").text(value);
+  $("#"+sel).find(".value").text(value);
 }
 
 function changePrice(start,end,steps,intervals,powr) { 
