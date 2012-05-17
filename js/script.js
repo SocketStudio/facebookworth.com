@@ -24,6 +24,7 @@ $(function()
   });
 
   $(document).on("price/stock",function(e,d){
+    
     var user_price=calculateUserPrice(d);
     changeValue('stock',d,'dollars');
     changeValue('user',user_price,'dollars');
@@ -73,24 +74,24 @@ function getCurrentValue(sel){
 function changeValue(sel,num,metric){
   var value;
   if(metric=="users"){
-    value=addSpaces(num.toFixed(0));
+    value=addSpaces(parseFloat(num).toFixed(0));
   }
   if(metric=="dollars"){
-    value=num.toFixed(2);
+    value=parseFloat(num).toFixed(2);
   }
   $("#"+sel).find("#value:eq(0)").text(value);
 }
 
 function rampValue(start,end,timer,event) {
-  console.log(event);
-  console.log(start + " - "+ end);
-  console.log();
-  var steps=20,intervals=100,powr=1.1;
+  start=parseFloat(start);
+  end=parseFloat(end);
+  var steps=20,intervals=100,powr=2;
   var actStep = 0;
   if(timer) {window.clearInterval(timer);}
   timer = window.setInterval(
     function() { 
       var current = easeInOut(start,end,steps,actStep,powr);
+      
       $(document).trigger(event,[current]);
       actStep++;
       if (actStep > steps) {window.clearInterval(timer); timer=null;}
@@ -101,8 +102,11 @@ function rampValue(start,end,timer,event) {
 
 function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) { 
   //Generic Animation Step Value Generator By www.hesido.com 
-  var delta = maxValue - minValue; 
-  var step = minValue+(Math.pow(((1 / totalSteps) * actualStep), powr) * delta); 
+  var delta = maxValue-minValue; 
+  var amount=(1 - Math.cos(actualStep/totalSteps * Math.PI)) / 2;
+
+  var step=minValue+delta*amount;
+  //var step = minValue+(Math.pow(((1 / totalSteps) * actualStep), powr) * delta); 
   return step;
 } 
 

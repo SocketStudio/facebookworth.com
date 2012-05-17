@@ -20,7 +20,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
         <link rel="stylesheet/less" href="less/style.less">
         <script src="js/libs/less-1.3.0.min.js"></script>
@@ -37,17 +37,37 @@
 <body>
 
         <div class="container">
+
+            <a data-toggle="modal" href="#myModal" id="explanation">
+              <h4><span>R</span> What's this?</h4>
+            </a>
+
+
+        <div id="social_buttons">
+          <div id="tweet_button">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="twitterapi" data-lang="en">Tweet</a>
+          </div>
+          <div class="fb-like" data-href="http://www.google.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+        </div>
           <!-- Example row of columns -->
           <div class="row stats">
-            <div class="span12 stat">
+            <div class="span12">
               <div class="row">
                 <div class="span4" id="active_users">
-                  <h1>Facebook has <br><span id="number_of_active_users">506 million </span><br>daily active users</h1>
+                  <h1>
+                    Facebook has
+                    <br>
+                    <span id="number_of_active_users">506 million</span>
+                    <br>daily active users</h1>
                 </div>
                 <div class="span4" id="FBuser"></div>
                 <div class="span4" id="user">
-                  <h3>As of <span id="time">9:00 AM EDT</span><br/>
-                    each Facebook user is valued at:</h3>
+                  <h3>
+                    As of
+                    <span id="time">9:00 AM EDT</span>
+                    <br/>
+                    each Facebook user is valued at:
+                  </h3>
                   <h1>
                     $
                     <span id="value">0</span>
@@ -55,9 +75,6 @@
                   <h3 id="stock">
                     Current Stock Price $
                     <span id="value">0</span>
-                    <div id="tweet_button"><a href="https://twitter.com/share" class="twitter-share-button" data-via="twitterapi" data-lang="en">Tweet</a></div>
-
-                    <div class="fb-like" data-href="http://www.google.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
                   </h3>
                 </div>
               </div>
@@ -65,66 +82,88 @@
           </div>
 
           <div class="row stats">
-            <div id="how_many" class="span12 stat"><h3>How many Facebook users is it worth?</h3></div>
+            <div class="span4"></div>
+            <div class="span8"></div>
           </div>
 
           <div class="row stats">
-            <div class="span4 stat" id="harvard">
+            <div id="how_many" class="span12">
+              <h3>How many Facebook users is it worth?</h3>
+            </div>
+          </div>
+
+          <div class="row stats">
+            <div class="span4" id="harvard">
               <p class="description">2 years of Undergrad at Harvard</p>
               <h2>
-                <span id="value">0</span> <i class="user_icon"></i>
+                <span id="value">0</span>
               </h2>
             </div>
-            <div class="span4 stat" id="instagram">
+            <div class="span4" id="instagram">
               <p class="description">Instagram</p>
               <h2>
                 <span id="value">0</span>
-                <i class="user_icon"></i>
               </h2>
             </div>
-            <div class="span4 stat" id="jet">
+            <div class="span4" id="jet">
               <p class="description">A Gulfstream 650 (Private Jet)</p>
               <h2>
                 <span id="value">0</span>
-                <i class="user_icon"></i>
+               
               </h2>
             </div>
           </div>
           <div class="row stats">
-            <div class="span4 stat" id="zuck">
+            <div class="span4" id="zuck">
 
               <p class="description">Zuckerberg's Salary for 1 year</p>
               <h2>
                 <span id="value">0</span>
-                <i class="user_icon"></i>
+               
               </h2>
             </div>
-            <div class="span4 stat" id="shares">
+            <div class="span4" id="shares">
 
               <p class="description">100 shares of Facebook stock</p>
               <h2>
                 <span id="value">0</span>
-                <i class="user_icon"></i>
+               
               </h2>
             </div>
-            <div class="span4 stat" id="winklevoss">
-
-             <p class="description">Settling with the Winklevoss'</p>
+            <div class="span4" id="winklevoss">
+              <p class="description">Settling with the Winklevoss'</p>
               <h2>
                 <span id="value">0</span>
-                <i class="user_icon"></i>
+               
               </h2>
             </div>
           </div>
 
           <footer>
-            <div class="row stats">
-              <div class="span12 stat">Built by SocketStudio</div>
+            <div class="row">
+              <div class="span12 line"></div>
+              <div class="span12"><p>Built by <a href="http://twitter.com/socketstudio" target="_blank">Socket Studio</a> in Toronto, Canada</p></div>
             </div>
           </footer>
 
         </div>
         <!-- /container -->
+
+
+        <div class="modal fade" id="myModal">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3><i class="user_icon"></i>What Am I Worth To Facebook?</h3>
+          </div>
+          <div class="modal-body">
+            <p>Lots of explanation</p>
+          </div>
+          <div class="modal-footer"><p>Built by <a href="http://twitter.com/socketstudio" target="_blank">Socket Studio</a> in Toronto, Canada</p>
+          </div>
+        </div>
+
+
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
 
@@ -138,16 +177,19 @@
   s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
 
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+      
+
 
 </body>
     </html>
