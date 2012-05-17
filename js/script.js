@@ -8,13 +8,15 @@ $(function()
 {
   $(document).on("priceChecked",function(e, d){
     var seconds=new Date().getSeconds();
+    current_price=parseInt($("#stock").find("#value").text());
     seconds=Math.floor(parseInt(seconds)/5)*5;
     seconds=(seconds<10) ? "0"+seconds.toString() : seconds;
-    var time=d.time.replace(/(AM|PM)/,":"+seconds);
+    var time=(d.time.indexOf("4:00") == -1) ? d.time.replace(/(AM|PM)/,":"+seconds) : d.time;
 
     $("#time").text(time);
+    
     if (current_price!=d.price){
-      changePrice(current_price,d.price,20,100,2)
+      this.stock_timer=rampValue(current_price,d.price,20,100,2,this.stock_timer,"price/stock")
     }
 
     // new_worth=calculateWorth(current_price);
@@ -22,11 +24,11 @@ $(function()
   });
 
   $(document).on("price/stock",function(e,d){
-    changeValue('stock',d.price,'dollars');
+    changeValue('stock',d,'dollars');
   });
 
   $(document).on("price/stock",function(e,d){
-    var user_price=calculateUserPrice(d.price);
+    var user_price=calculateUserPrice(d);
 
     changeValue('user',user_price,'dollars');
     setTimeout(function(){
@@ -57,7 +59,7 @@ $(function()
     changeValue('harvard',(harvard_tuition*2)/d.price,'users')
   });
   
-  $(document).trigger("price/stock",[{price:current_price}]);
+  $(document).trigger("price/stock",[current_price]);
   getPrice();
   setInterval(getPrice,5000);
 
@@ -76,17 +78,18 @@ function changeValue(sel,num,metric){
   $("#"+sel).find("#value:eq(0)").text(value);
 }
 
-function changePrice(start,end,steps,intervals,powr) { 
+function rampValue(start,end,steps,intervals,powr,timer,event) {
   var actStep = 0;
-  if(window.timerID) {window.clearInterval(window.timerID);}
-  window.timerID = window.setInterval(
+  if(timer) {window.clearInterval(timer);}
+  timer = window.setInterval(
     function() { 
-      current_price = easeInOut(start,end,steps,actStep,powr);
-      $(document).trigger("price/stock",[{price:current_price}]);
+      var current = easeInOut(start,end,steps,actStep,powr);
+      $(document).trigger(event,[current]);
       actStep++;
-      if (actStep > steps) {window.clearInterval(window.timerID); window.timerID=null;}
+      if (actStep > steps) {window.clearInterval(timer); timer=null;}
     } 
     ,intervals)
+  return timer;
 }
 
 function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) { 
