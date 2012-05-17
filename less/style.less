@@ -35,8 +35,12 @@ body {
 		-moz-border-radius:5px;
 		-webkit-border-radius:5px;
 	}
-	.span4,.span8{
+
+	.span4{
 		height:225px;
+	}
+
+	.span4,.span8{
 		position: relative;
 		color:white;
 		background-size:100%;
@@ -321,14 +325,21 @@ footer{
 @media (min-width: 1200px) {
 	.stats{
 		margin-top:15px;
+
 		.span4{
 			height:277px;
 		}
 		.span8#nested{
-			height:77px;
+			height:277-230px;
+			background-color:transparent;
+			h3{
+				font-size:36px;
+				color:@FBblue;
+				line-height:40px;
+			}
 		}
 		.span2{
-			height:200px;
+			height:230px;
 		}
 	}
 }

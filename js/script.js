@@ -34,9 +34,9 @@ $(function()
     var user_price=calculateUserPrice(d.price);
 
     changeValue('user',user_price,'dollars');
-    setTimeout(function(){
+
       $(document).trigger("price/user",[{price:user_price}])
-    },1000);
+
   });
 
   $(document).on("price/user",function(e,d){
