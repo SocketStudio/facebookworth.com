@@ -105,7 +105,7 @@ function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) {
 function getPrice(){
 $.ajax({
     type: "GET",
-    url: "http://finance.google.com/finance/info?client=ig&q=NASDAQ:MSFT",
+    url: "http://finance.google.com/finance/info?client=ig&q=NASDAQ:FB",
     dataType: "jsonp",
     success: function(data){
       $(document).trigger("priceChecked",[{price:data[0].l,time:data[0].ltt}])
