@@ -103,16 +103,28 @@ body {
 }
 
 #market_cap{
-	color: white;
-	height: 80px;
-	h3{
-		font-size: 1.7em;
-		line-height: 80px;
+	height: 100px;
+	position: relative;
+
+	.worth{
+		font-size: 2em;
+		color: white;
+		font-weight: bold;
+		line-height: 10px;
 	}
 
-	.value, .dollarsign{
-		font-size: 4em;
+	.value, .dollars{
 		color: @FBblue;
+		font-size: 5.9em;
+		font-weight: bold;
+		line-height: 100px;
+	}
+
+	.certificate{
+		position: absolute;
+		right: 20px;
+		top: 50%;
+		margin-top: -33px;
 	}
 }
 
