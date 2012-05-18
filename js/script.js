@@ -7,12 +7,14 @@ var current_price=35.00, shares=2740000037, users = 901000000, timerID, friends=
 $(function()
 {
   $(document).on("priceChecked",function(e, d){
-    var seconds=new Date().getSeconds();
-    seconds=Math.floor(parseInt(seconds)/5)*5;
-    seconds=(seconds<10) ? "0"+seconds.toString() : seconds;
-    var time=(d.time.indexOf("4:00") == -1) ? d.time.replace(/(AM|PM)/,":"+seconds) : d.time;
-
-    $("#time").text(time);
+    if (d.time&&d.time!="")
+    {
+      var seconds=new Date().getSeconds();
+        seconds=Math.floor(parseInt(seconds)/5)*5;
+        seconds=(seconds<10) ? "0"+seconds.toString() : seconds;
+        var time=(d.time.indexOf("4:00") == -1) ? d.time.replace(/(AM|PM)/,":"+seconds) : d.time;
+        $("#time").text(time);
+      }
     if (current_price!=d.price){
       changePrice(current_price,d.price,20,100,2)
     }
