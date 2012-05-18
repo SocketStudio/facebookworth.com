@@ -2,7 +2,7 @@
 
 */
 
-var current_price=35.00, shares=2748085037, users = 901000000, timerID, friends=245;
+var current_price=35.00, shares=2740000037, users = 901000000, timerID, friends=245;
    
 $(function()
 {
