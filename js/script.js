@@ -2,7 +2,7 @@
 
 */
 
-var current_price=35.00, shares=2138085037, users = 901000000, timerID, instagram_price =1000000000, jet_price = 65000000, zuck_salary = 1712362, harvard_tuition = 36305, winklevoss =14000000, friends=245;
+var current_price=35.00, shares=2748085037, users = 901000000, timerID, friends=245;
    
 $(function()
 {
@@ -23,43 +23,18 @@ $(function()
 
   $(document).on("price/stock",function(e,d){
     changeValue('stock',d.price,'dollars');
-  });
-
-  $(document).on("price/stock",function(e,d){
     changeValue('market_cap',d.price*shares,"users");
-  });
 
-
-  $(document).on("price/stock",function(e,d){
     var user_price=calculateUserPrice(d.price);
 
-    changeValue('user',user_price,'dollars');
-
-      $(document).trigger("price/user",[{price:user_price}])
+    $(document).trigger("price/user",[{price:user_price}])
 
   });
 
   $(document).on("price/user",function(e,d){
+    changeValue('user',d.price,'dollars');
     changeValue('friends_value',friends*d.price,'users');
-  });
-
-  $(document).on("price/user",function(e,d){
     changeValue('friends',d.price,'dollars');
-  });
-  $(document).on("price/user",function(e,d){
-    changeValue('zuck',zuck_salary/d.price,'users');
-  });
-
-  $(document).on("price/user",function(e,d){
-    changeValue('shares',(current_price*100)/d.price,'users')
-  });
-
-  $(document).on("price/user",function(e,d){
-    changeValue('winklevoss',winklevoss/d.price,'users');
-  });
-
-  $(document).on("price/user",function(e,d){
-    changeValue('harvard',(harvard_tuition*2)/d.price,'users')
   });
   
   $(document).trigger("price/stock",[{price:current_price}]);
