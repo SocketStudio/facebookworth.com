@@ -62,6 +62,18 @@ body {
 			font-size: 1.1em;
 		}
 	}
+	.span8#nested{
+			height:225-181px;
+			background-color:transparent;
+			h3{
+				font-size:36px;
+				color:@FBblue;
+				line-height:40px;
+			}
+		}
+		.span2{
+			height:181px;
+		}
 }
 
 #FBuser{
@@ -100,6 +112,7 @@ body {
 
 #friends_value{
 	background:@FBlightblue url(../img/brace.gif) 0 0 no-repeat;
+	background-size:100%;
 	.braceValue{
 		color: @FBblue;
 		font-size: 3.5em;
@@ -134,6 +147,7 @@ body {
 
 .friend{
 	background:@FBlightblue url(../img/friend.gif) 0 0 no-repeat;
+	background-size:100%;
 }
 
 #market_cap{
@@ -163,62 +177,6 @@ body {
 	}
 }
 
-#zuck{
-	background:@FBlightblue url(../img/zuck.gif) 0 0 no-repeat;
-	h2{
-		left:50%;
-		top:50%;
-	}
-}
-
-#jet{
-	background:@FBlightblue url(../img/jet.gif) 0 0 no-repeat;
-	h2{
-		width:200px;
-		bottom:20px;
-		left:50%;
-		margin-left:-100px;
-	}
-}
-
-
-#harvard{
-		background:@FBlightblue url(../img/cap.gif) 0 0 no-repeat;
-	h2{
-		width:200px;
-		bottom:20px;
-		left:50%;
-		margin-left:-100px;
-	}
-}
-
-#instagram{
-		background:@FBlightblue url(../img/instagram.gif) 0 0 no-repeat;
-	h2{
-		width:300px;
-		bottom:20px;
-		left:50%;
-		margin-left:-150px;
-	}
-
-		#value{
-		font-size: 1.3em;
-	}
-}
-
-#winklevoss{
-		background:@FBlightblue url(../img/wink.gif) 0 0 no-repeat;
-	h2{
-		width:280px;
-		bottom:20px;
-		left:50%;
-		margin-left:-140px;
-	}
-
-	#value{
-		font-size: 1.5em;
-	}
-}
 
 #shares{
 		background:@FBlightblue url(../img/stock.gif) 0 0 no-repeat;
@@ -372,12 +330,23 @@ footer{
 		.span4,.span8{
 			height:171px;
 		}
+		.span8#nested{
+			height:171-137px;
+			background-color:transparent;
+			h3{
+				font-size:36px;
+				color:@FBblue;
+				line-height:40px;
+			}
+		}
+		.span2{
+			height:137px;
+		}
 	}
 }
 
 @media (min-width: 1200px) {
 	body{
-		
 	}
 	.stats{
 		margin-top:15px;
