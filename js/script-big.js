@@ -12,7 +12,7 @@ $(function()
   selectors.user=$("#user");
   selectors.friends_value=$("#friends_value");
   selectors.friends=$("#friends");
-  selectors.$time=("#time");
+  selectors.$time=$("#time");
   $(document).on("priceChecked",function(e, d){
     if (d.time&&d.time!="")
     {
