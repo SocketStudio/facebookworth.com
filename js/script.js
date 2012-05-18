@@ -2,10 +2,17 @@
 
 */
 
-var current_price=35.00, shares=2740000037, users = 901000000, timerID, friends=245;
-   
+
+  var current_price=35.00, shares=2740000037, users = 901000000, timerID, friends=245;
+  var selectors={};
 $(function()
 {
+  selectors.stock=$("#stock");
+  selectors.market_cap=$("#market_cap");
+  selectors.user=$("#user");
+  selectors.friends_value=$("#friends_value");
+  selectors.friends=$("#friends");
+  selectors.$time=("#time");
   $(document).on("priceChecked",function(e, d){
     if (d.time&&d.time!="")
     {
@@ -13,7 +20,7 @@ $(function()
         seconds=Math.floor(parseInt(seconds)/5)*5;
         seconds=(seconds<10) ? "0"+seconds.toString() : seconds;
         var time=(d.time.indexOf("4:00") == -1) ? d.time.replace(/(AM|PM)/,":"+seconds) : d.time;
-        $("#time").text(time);
+        selectors.$time.text(time);
       }
     if (current_price!=d.price){
       changePrice(current_price,d.price,20,100,2)
@@ -55,7 +62,7 @@ function changeValue(sel,num,metric){
   if(metric=="dollars"){
     value=num.toFixed(2);
   }
-  $("#"+sel).find(".value").text(value);
+  selectors[sel].find(".value").text(value);
 }
 
 function changePrice(start,end,steps,intervals,powr) { 
