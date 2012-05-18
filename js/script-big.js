@@ -1,3 +1,8 @@
+/* Author:
+
+
+
+
 var current_price=35.00, shares=2740000037, users = 901000000, timerID, friends=245;
 var selectors={};
 $(function()
@@ -27,9 +32,7 @@ $(function()
 
   $(document).on("price/stock",function(e,d){
     changeValue('stock',d.price,'dollars');
-    setTimeout(function(){
-      changeValue('market_cap',d.price*shares,"users");
-    },3000);
+    changeValue('market_cap',d.price*shares,"users");
 
     var user_price=calculateUserPrice(d.price);
 
@@ -39,13 +42,8 @@ $(function()
 
   $(document).on("price/user",function(e,d){
     changeValue('user',d.price,'dollars');
-    setTimeout(function(){
     changeValue('friends_value',friends*d.price,'users');
-  },2000);
-    setTimeout(function(){
     changeValue('friends',d.price,'dollars');
-  },1000);
-
   });
   
   $(document).trigger("price/stock",[{price:current_price}]);
@@ -117,3 +115,5 @@ function addSpaces(nStr){
   }
   return x1 + x2;
 }
+
+*/
