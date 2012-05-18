@@ -65,11 +65,6 @@ body {
 	.span8#nested{
 			height:225-181px;
 			background-color:transparent;
-			h3{
-				font-size:36px;
-				color:@FBblue;
-				line-height:40px;
-			}
 		}
 		.span2{
 			height:181px;
@@ -89,7 +84,7 @@ body {
 	}
 
 	span{
-		font-size: 2.5em;
+		font-size: 2em;
 		line-height: 1em;
 	}
 }
@@ -102,7 +97,7 @@ body {
 	text-align: left;
 	h3{
 		padding-top: 8%;
-		font-size: 2em;
+		font-size: 1.5em;
 	}
 
 	h3#stock{
@@ -110,7 +105,7 @@ body {
 	}
 	h1 {
 		color: #375595;
-		font-size: 7em;
+		font-size: 6em;
 		line-height: 80px;
 		padding: 3% 0 3% 0;
 	}
@@ -126,17 +121,18 @@ body {
 	background-size:100%;
 	.braceValue{
 		color: @FBblue;
-		font-size: 3.5em;
+		font-size: 2.6em;
 		position: absolute;
-		bottom: 50%;
+		bottom: 49%;
 		left: 30%;
 	}
 
 	#friendsworth{
 		color: white;
 		position: absolute;
-		top: 20%;
+		top: 19%;
 		right: 7%;
+		font-size:1em;
 	}
 }
 
@@ -150,9 +146,9 @@ body {
 	}
 
 	h3{
-		font-size: 30px !important;
+		font-size: 25px;
 		position: relative;
-		top: 3px;
+		top: 12px;
 	}
 }
 
@@ -166,7 +162,7 @@ body {
 	position: relative;
 
 	.worth{
-		font-size: 2em;
+		font-size: 1.6em;
 		color: white;
 		font-weight: bold;
 		margin-left: 20px;
@@ -175,7 +171,7 @@ body {
 
 	.value, .dollars{
 		color: @FBblue;
-		font-size: 5.9em;
+		font-size: 4.6em;
 		font-weight: bold;
 		line-height: 100px;
 	}
@@ -189,19 +185,6 @@ body {
 }
 
 
-#shares{
-		background:@FBlightblue url(../img/stock.gif) 0 0 no-repeat;
-	h2{
-		width:200px;
-		top:40%;
-		left:70%;
-		margin-left:-100px;
-	}
-
-	#value{
-		font-size: 2.4em;
-	}
-}
 
 
 .user_icon::before{
@@ -216,7 +199,7 @@ body {
 
 #social_buttons{
 	float:right;
-	margin-top:-15px;
+	margin-top:-5px;
 	width:200px;
 	div{
 		width:100px;
@@ -370,12 +353,116 @@ footer{
 			background-color:transparent;
 			h3{
 				font-size:36px;
-				color:@FBblue;
-				line-height:40px;
+				color:white;
+				line-height:48px;
 			}
 		}
 		.span2{
 			height:230px;
 		}
 	}
+
+
+	#user{
+		.inner{
+			position: relative;
+			top: 10%;
+		}
+		text-align: left;
+		h3{
+			padding-top: 8%;
+			font-size: 2em;
+		}
+
+		h3#stock{
+			padding-top: 2%;
+		}
+		h1 {
+			color: #375595;
+			font-size: 7em;
+			line-height: 80px;
+			padding: 3% 0 3% 0;
+		}
+
+		h3#time_container{
+			font-size: 1.4em;
+			padding-top: 0;
+		}
+	}
+
+	#friends{
+		.dollarsign, .value{
+			color: @FBblue;
+			font-size: 1.9em;
+			font-weight: bold;
+			position: relative;
+			top: 10%;
+		}
+
+		h3{
+			font-size: 30px;
+			position: relative;
+			top: 3px;
+		}
+	}
+
+	#friends_value{
+	background:@FBlightblue url(../img/brace.gif) 0 0 no-repeat;
+	background-size:100%;
+		.braceValue{
+			color: @FBblue;
+			font-size: 3.3em;
+			position: absolute;
+			bottom: 50%;
+			left: 30%;
+		}
+
+		#friendsworth{
+			color: white;
+			position: absolute;
+			top: 20%;
+			right: 7%;
+		}
+	}
+
+	#market_cap{
+		height: 100px;
+		position: relative;
+
+		.worth{
+			font-size: 2em;
+			color: white;
+			font-weight: bold;
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+
+		.value, .dollars{
+			color: @FBblue;
+			font-size: 5.9em;
+			font-weight: bold;
+			line-height: 100px;
+		}
+
+		.certificate{
+			position: absolute;
+			right: 20px;
+			top: 50%;
+			margin-top: -33px;
+		}
+	}
+
+	#social_buttons{
+	float:right;
+	margin-top:-15px;
+	width:200px;
+	div{
+		width:100px;
+	}
+	#tweet_button,.fb-like{
+		float:left;
+	}
+
+}
+
 }
